@@ -1,0 +1,19 @@
+name: sed test
+
+on:
+  push:
+    branches:
+      - main # メインブランチにpushされた時
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses:
+          actions/checkout@main
+          # - uses: jakejarvis/s3-sync-action@master
+          # with:
+          #   args: --acl public-read --follow-symlinks --delete --exclude '.git*/*'
+      - name: sed
+        run: sed -i 's/aaa/bbb/g' test.txt
